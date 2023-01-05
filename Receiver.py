@@ -9,6 +9,8 @@ import os
 SERVER_HOST = "3.87.215.252"
 SERVER_PORT = 80
 
+#süperiz
+
 # receive 4096 bytes each time
 BUFFER_SIZE = 4096
 
