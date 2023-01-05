@@ -6,7 +6,7 @@ import tqdm
 import os
 
 # device's IP address
-SERVER_HOST = "0.0.0.0"
+SERVER_HOST = "3.87.215.252"
 SERVER_PORT = 80
 
 # receive 4096 bytes each time
