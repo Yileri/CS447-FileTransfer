@@ -6,8 +6,8 @@ import tqdm
 import os
 
 # device's IP address
-SERVER_HOST = "3.87.215.252"
-SERVER_PORT = 80
+SERVER_HOST = "172.31.85.156"
+SERVER_PORT = 5001
 
 #süperiz
 
@@ -20,11 +20,7 @@ SEPARATOR = "<SEPARATOR>"
 # TCP socket
 s = socket.socket()
 # bind the socket to our local address
-s.bind((SERVER_HOST, SERVER_PORT))
-# enabling our server to accept connections
-# 5 here is the number of unaccepted connections that
-# the system will allow before refusing new connections
-s.listen(5)
+s.connect((SERVER_HOST, SERVER_PORT))
 print(f"[*] Listening as {SERVER_HOST}:{SERVER_PORT}")
 # accept connection if there is any
 client_socket, address = s.accept()

@@ -2,7 +2,7 @@
 Client that sends the file (uploads)
 """
 import socket
-import tqdm
+import tqdm 
 import os
 import argparse
 
