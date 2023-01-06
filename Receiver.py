@@ -6,7 +6,7 @@ import tqdm
 import os
 
 # device's IP address
-SERVER_HOST = "3.83.178.221"
+SERVER_HOST = "127.0.0.1"
 SERVER_PORT = 11467
 # receive 4096 bytes each time
 BUFFER_SIZE = 4096
