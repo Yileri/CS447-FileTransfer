@@ -6,21 +6,20 @@ import tqdm
 import os
 
 # device's IP address
-SERVER_HOST = "172.31.85.156"
-SERVER_PORT = 5001
-
-#süperiz
-
+SERVER_HOST = "localhost"
+SERVER_PORT = 11467
 # receive 4096 bytes each time
 BUFFER_SIZE = 4096
-
 SEPARATOR = "<SEPARATOR>"
-
 # create the server socket
 # TCP socket
-s = socket.socket()
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 # bind the socket to our local address
-s.connect((SERVER_HOST, SERVER_PORT))
+s.bind(("localhost", 11467))
+# enabling our server to accept connections
+# 5 here is the number of unaccepted connections that
+# the system will allow before refusing new connections
+s.listen(5)
 print(f"[*] Listening as {SERVER_HOST}:{SERVER_PORT}")
 # accept connection if there is any
 client_socket, address = s.accept()
@@ -55,5 +54,3 @@ with open(filename, "wb") as f:
 client_socket.close()
 # close the server socket
 s.close()
-
-
