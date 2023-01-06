@@ -50,6 +50,6 @@ if __name__ == "__main__":
     parser.add_argument("-p", "--port", help="Port to use, default is 5001", type=int, default=5001)
     args = parser.parse_args()
     filename = args.file
-    host = args.host  #3.87.215.252 süperiz
+    host = args.host  #3.87.215.252 süperi
     port = args.port
     send_file(filename, host, port)

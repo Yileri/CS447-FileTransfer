@@ -6,7 +6,7 @@ import tqdm
 import os
 
 # device's IP address
-SERVER_HOST = "localhost"
+SERVER_HOST = "3.83.178.221"
 SERVER_PORT = 11467
 # receive 4096 bytes each time
 BUFFER_SIZE = 4096
@@ -15,7 +15,7 @@ SEPARATOR = "<SEPARATOR>"
 # TCP socket
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 # bind the socket to our local address
-s.bind(("localhost", 11467))
+s.bind((SERVER_HOST, SERVER_PORT))
 # enabling our server to accept connections
 # 5 here is the number of unaccepted connections that
 # the system will allow before refusing new connections
