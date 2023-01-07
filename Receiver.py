@@ -4,6 +4,14 @@ Server receiver of the file
 import socket
 import tqdm
 import os
+import boto3
+
+ec2 = boto3.client("ec2", "us-east-1", aws_access_key_id="AKIATWW5D5EFTRY6JQE6",
+                   aws_secret_access_key="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")
+
+response = ec2.describe_instances()
+print(response)
+
 
 # device's IP address
 SERVER_HOST = "127.0.0.1"
@@ -54,3 +62,4 @@ with open(filename, "wb") as f:
 client_socket.close()
 # close the server socket
 s.close()
+
