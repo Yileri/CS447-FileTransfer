@@ -9,12 +9,10 @@ import boto3
 ec2 = boto3.client("ec2", "us-east-1", aws_access_key_id="AKIATWW5D5EFTRY6JQE6",
                    aws_secret_access_key="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")
 
-response = ec2.describe_instances()
-print(response)
 
 
 # device's IP address
-SERVER_HOST = "127.0.0.1"
+SERVER_HOST = "localhost"
 SERVER_PORT = 11467
 # receive 4096 bytes each time
 BUFFER_SIZE = 4096

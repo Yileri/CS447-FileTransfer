@@ -4,7 +4,11 @@ Client that sends the file (uploads)
 import socket
 import tqdm 
 import os
+import boto3
 import argparse
+
+ec2 = boto3.client("ec2", "us-east-1", aws_access_key_id="AKIATWW5D5EFTRY6JQE6",
+                   aws_secret_access_key="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")
 
 SEPARATOR = "<SEPARATOR>"
 
