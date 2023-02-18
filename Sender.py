@@ -1,14 +1,9 @@
-"""
-Client that sends the file (uploads)
-"""
 import socket
-import tqdm 
+import tqdm
 import os
-import boto3
 import argparse
+from cryptography.fernet import Fernet
 
-ec2 = boto3.client("ec2", "us-east-1", aws_access_key_id="AKIATWW5D5EFTRY6JQE6",
-                   aws_secret_access_key="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")
 
 SEPARATOR = "<SEPARATOR>"
 
@@ -19,12 +14,18 @@ def send_file(filename, host, port):
     # get the file size
     filesize = os.path.getsize(filename)
     # create the client socket
-    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    s = socket.socket()
     print(f"[+] Connecting to {host}:{port}")
     s.connect((host, port))
     print("[+] Connected.")
 
-    # send the filename and filesize
+    # create key from the value at filekey
+    with open("filekey.key", "rb") as filekey:
+        key = filekey.read()
+
+    # create fernet key for symetric encryption
+    fernet = Fernet(key)
+
     s.send(f"{filename}{SEPARATOR}{filesize}".encode())
 
     # start sending the file
@@ -36,24 +37,21 @@ def send_file(filename, host, port):
             if not bytes_read:
                 # file transmitting is done
                 break
-            # we use sendall to assure transimission in
-            # busy networks
-            s.sendall(bytes_read)
-            # update the progress bar
+            #update progress bar
             progress.update(len(bytes_read))
+            bytes_read = fernet.encrypt(bytes_read)
+            s.sendall(bytes_read)
 
     # close the socket
     s.close()
 
 
-if __name__ == "__main__":
+if _name_ == "_main_":
     import argparse
-    parser = argparse.ArgumentParser(description="Simple File Sender")
+    parser = argparse.ArgumentParser(description="File Transfer")
     parser.add_argument("file", help="File name to send")
-    parser.add_argument("host", help="The host/IP address of the receiver")
-    parser.add_argument("-p", "--port", help="Port to use, default is 5001", type=int, default=5001)
     args = parser.parse_args()
     filename = args.file
-    host = args.host  #3.87.215.252 süperi
-    port = args.port
+    host = "3.83.178.221"
+    port = 11467
     send_file(filename, host, port)
