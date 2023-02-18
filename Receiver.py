@@ -6,14 +6,17 @@ import tqdm
 import os
 import boto3
 
-ec2 = boto3.client("ec2", "us-east-1", aws_access_key_id="AKIATWW5D5EFTRY6JQE6",
-                   aws_secret_access_key="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")
+ec2 = boto3.client("ec2", 
+                   "us-east-1", 
+                   aws_access_key_id="", #key id here
+                   aws_secret_access_key="" #access key here
+                  )
 
 
 
 # device's IP address
 SERVER_HOST = "localhost"
-SERVER_PORT = 11467
+SERVER_PORT = 11467 #this can change as 
 # receive 4096 bytes each time
 BUFFER_SIZE = 4096
 SEPARATOR = "<SEPARATOR>"
